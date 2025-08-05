@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const ProductItem = ({ product }) => {
   const handleAddToCart = () => {
     if (product && product.id && product.thumbnail) {
       dispatch(addToCart(product));
-      alert(`${product.title} added to cart ✅`);
+     toast.success(`${product.title} added to cart!`);
     } else {
       console.warn('Invalid product:', product);
     }
