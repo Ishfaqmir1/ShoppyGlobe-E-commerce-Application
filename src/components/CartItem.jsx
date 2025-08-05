@@ -1,11 +1,9 @@
+import React from 'react';
+import { useDispatch } from 'react-redux'; 
+import { removeFromCart, updateQuantity } from '../redux/cartSlice';
+
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
-
-  // ✅ Guard clause to prevent crash
-  if (!item || !item.thumbnail) {
-    console.warn("Invalid item in CartItem:", item);
-    return null;
-  }
 
   const handleQuantityChange = (e) => {
     const newQty = parseInt(e.target.value);
@@ -14,10 +12,15 @@ const CartItem = ({ item }) => {
     }
   };
 
+  const handleRemove = () => {
+    dispatch(removeFromCart(item.id));
+    alert(`${item.title} removed from cart ❌`);
+  };
+
   return (
     <div className="cart-item">
       <img src={item.thumbnail} alt={item.title} />
-      <div style={{ flex: 1 }}>
+      <div>
         <h4>{item.title}</h4>
         <p>₹{item.price} x {item.quantity}</p>
       </div>
@@ -27,10 +30,11 @@ const CartItem = ({ item }) => {
         value={item.quantity}
         onChange={handleQuantityChange}
       />
-      <button onClick={() => dispatch(removeFromCart(item.id))}>
-        Remove
+      <button onClick={handleRemove}>
+        Remove Item
       </button>
     </div>
   );
 };
+
 export default CartItem;

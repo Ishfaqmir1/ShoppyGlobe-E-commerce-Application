@@ -2,18 +2,17 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 
-// ✅ Lazy-loaded components
+//  Lazy-loaded components
 const ProductList = lazy(() => import('./components/ProductList'));
 const ProductDetail = lazy(() => import('./components/ProductDetail'));
 const Cart = lazy(() => import('./components/Cart'));
-const NotFound = lazy(() => import('./components/NotFound')); // optional
+const NotFound = lazy(() => import('./components/NotFound')); 
 
 const App = () => {
   return (
     <Router>
       <Header />
 
-      {/* ✅ Suspense for fallback UI while components load */}
       <Suspense fallback={<div className="loading">Loading...</div>}>
         <Routes>
           <Route path="/" element={<ProductList />} />

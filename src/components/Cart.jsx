@@ -5,7 +5,6 @@ import CartItem from './CartItem';
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
 
-  // Filter out any undefined or invalid cart items
   const validItems = cartItems.filter((item) => item && item.thumbnail);
 
   const total = validItems.reduce(
@@ -15,7 +14,7 @@ const Cart = () => {
 
   return (
     <div className="cart-container">
-      <h2 className="cart-title">Your Cart</h2>
+      <h2 className="cart-title">My Cart</h2>
 
       {validItems.length === 0 ? (
         <p className="empty-cart">Your cart is empty.</p>
@@ -27,7 +26,7 @@ const Cart = () => {
             ))}
           </div>
 
-          <h3 className="cart-total">Total: ₹{total}</h3>
+          <h3 className="cart-total">Total Price: ₹{total}</h3>
         </>
       )}
     </div>

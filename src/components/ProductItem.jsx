@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 import { Link } from 'react-router-dom';
- 
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -10,6 +9,7 @@ const ProductItem = ({ product }) => {
   const handleAddToCart = () => {
     if (product && product.id && product.thumbnail) {
       dispatch(addToCart(product));
+      alert(`${product.title} added to cart ✅`);
     } else {
       console.warn('Invalid product:', product);
     }
@@ -17,7 +17,7 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className="product-card">
-      <Link to={`/products/${product.id}`} className="product-link">
+      <Link to={`/product/${product.id}`} className="product-link">
         <img
           src={product.thumbnail}
           alt={product.title}
@@ -25,7 +25,7 @@ const ProductItem = ({ product }) => {
         />
         <h3 className="product-title">{product.title}</h3>
       </Link>
-      <p className="product-price">₹{product.price}</p>
+      <p className="product-price">Price = ₹{product.price}</p>
       <button onClick={handleAddToCart} className="add-to-cart-btn">
         Add to Cart
       </button>

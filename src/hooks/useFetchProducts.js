@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const useFetchProducts = () => {
-  const [products, setProducts] = useState([]);       // Stores product list
-  const [loading, setLoading] = useState(true);       // Tracks loading state
-  const [error, setError] = useState(null);           // Tracks error message
+  const [products, setProducts] = useState([]);       
+  const [loading, setLoading] = useState(true);      
+  const [error, setError] = useState(null);          
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -13,9 +13,9 @@ const useFetchProducts = () => {
         const data = await response.json();
         setProducts(data.products); 
       } catch (err) {
-        setError(err.message); // Store the error message
+        setError(err.message); 
       } finally {
-        setLoading(false); // Always stop loading after fetch attempt
+        setLoading(false); 
       }
     };
 
