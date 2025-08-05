@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'; 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FaGithub } from 'react-icons/fa'; // GitHub Icon
 
 const Header = () => {
   const cartItems = useSelector((state) => state.cart);
@@ -14,6 +15,17 @@ const Header = () => {
       <nav className="nav">
         <Link to="/">Home</Link>
         <Link to="/cart">Cart ({cartItems.length})</Link>
+
+        {/* GitHub Icon Link */}
+        <a
+          href="https://github.com/Ishfaqmir1/ShoppyGlobe-E-commerce-Application.git"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-icon"
+          title="View on GitHub"
+        >
+          <FaGithub size={24} />
+        </a>
       </nav>
     </header>
   );
